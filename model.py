@@ -192,8 +192,8 @@ class DexiNed(nn.Module):
         self.up_block_4 = UpConvBlock(512, 3)
         self.up_block_5 = UpConvBlock(512, 4)
         self.up_block_6 = UpConvBlock(256, 4)
-        self.block_cat = SingleConvBlock(6, 1, stride=1, use_bs=False) # hed fusion method
-        # self.block_cat = CoFusion(6,6)# cats fusion method
+        # self.block_cat = SingleConvBlock(6, 1, stride=1, use_bs=False) # hed fusion method
+        self.block_cat = CoFusion(6,6)# cats fusion method
 
 
         self.apply(weight_init)
