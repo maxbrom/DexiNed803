@@ -157,12 +157,42 @@ class DoubleConvBlock(nn.Module):
             x = self.relu(x)
         return x
 
+class TripleConvBlock(nn.Module):
+    def __init__(self, in_features, mid_features1, mid_features2, out_features=None, stride=1, use_act=True):
+        super(TripleConvBlock, self).__init__()
+
+        self.use_act = use_act
+        if out_features is None:
+            out_features = mid_features2
+        self.conv1 = nn.Conv2d(in_features, mid_features1, 3, padding=1, stride=stride)
+        self.bn1 = nn.BatchNorm2d(mid_features1)
+        self.conv2 = nn.Conv2d(mid_features1, mid_features2, 3, padding=1)
+        self.bn2 = nn.BatchNorm2d(mid_features2)
+        self.conv3 = nn.Conv2d(mid_features2, out_features, 3, padding=1)
+        self.bn3 = nn.BatchNorm2d(out_features)
+        self.relu = nn.ReLU(inplace=True)
+
+    def forward(self, x):
+        x = self.conv1(x)
+        x = self.bn1(x)
+        x = self.relu(x)
+        x = self.conv2(x)
+        x = self.bn2(x)
+        x = self.relu(x)
+        x = self.conv3(x)
+        x = self.bn3(x)
+        if self.use_act:
+            x = self.relu(x)
+        return x
 
 class DexiNed(nn.Module):
     """ Definition of the DXtrem network. """
 
     def __init__(self):
         super(DexiNed, self).__init__()
+
+        self.pre_block = TripleConvBlock(3, 32, 64, 3)
+
         self.block_1 = DoubleConvBlock(3, 32, 64, stride=2,)
         self.block_2 = DoubleConvBlock(64, 128, use_act=False)
         self.dblock_3 = _DenseBlock(2, 128, 256) # [128,256,100,100]
@@ -212,8 +242,10 @@ class DexiNed(nn.Module):
     def forward(self, x):
         assert x.ndim == 4, x.shape
 
+        pre_block = self.pre_block(x)
+
         # Block 1
-        block_1 = self.block_1(x)
+        block_1 = self.block_1(pre_block)
         block_1_side = self.side_1(block_1)
 
         # Block 2
