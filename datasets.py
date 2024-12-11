@@ -112,39 +112,39 @@ def dataset_info(dataset_name, is_linux=True):
                      'img_width': 512,  # 481
                      'test_list': 'test_pair.lst',
                      'train_list': 'train_pair.lst',
-                     'data_dir': 'C:/Users/xavysp/dataset/BSDS',  # mean_rgb
+                     'data_dir': 'dataset/BSDS',  # mean_rgb
                      'yita': 0.5},
             'BSDS300': {'img_height': 512,  # 321
                         'img_width': 512,  # 481
                         'test_list': 'test_pair.lst',
-                        'data_dir': 'C:/Users/xavysp/dataset/BSDS300',  # NIR
+                        'data_dir': 'dataset/BSDS300',  # NIR
                         'yita': 0.5},
             'PASCAL': {'img_height': 375,
                        'img_width': 500,
                        'test_list': 'test_pair.lst',
-                       'data_dir': 'C:/Users/xavysp/dataset/PASCAL',  # mean_rgb
+                       'data_dir': 'dataset/PASCAL',  # mean_rgb
                        'yita': 0.3},
             'CID': {'img_height': 512,
                     'img_width': 512,
                     'test_list': 'test_pair.lst',
-                    'data_dir': 'C:/Users/xavysp/dataset/CID',  # mean_rgb
+                    'data_dir': 'dataset/CID',  # mean_rgb
                     'yita': 0.3},
             'NYUD': {'img_height': 425,
                      'img_width': 560,
                      'test_list': 'test_pair.lst',
-                     'data_dir': 'C:/Users/xavysp/dataset/NYUD',  # mean_rgb
+                     'data_dir': 'dataset/NYUD',  # mean_rgb
                      'yita': 0.5},
             'MDBD': {'img_height': 720,
                          'img_width': 1280,
                          'test_list': 'test_pair.lst',
                          'train_list': 'train_pair.lst',
-                         'data_dir': 'C:/Users/xavysp/dataset/MDBD',  # mean_rgb
+                         'data_dir': 'dataset/MDBD',  # mean_rgb
                          'yita': 0.3},
             'BIPED': {'img_height': 720,  # 720
                       'img_width': 1280,  # 1280
                       'test_list': 'test_pair.lst',
                       'train_list': 'train_rgb.lst',
-                      'data_dir': 'C:/Users/xavysp/dataset/BIPED',  # WIN: '../.../dataset/BIPED/edges'
+                      'data_dir': 'dataset/BIPED',  # WIN: '../.../dataset/BIPED/edges'
                       'yita': 0.5},
             'CLASSIC': {'img_height': 512,
                         'img_width': 512,
@@ -155,7 +155,7 @@ def dataset_info(dataset_name, is_linux=True):
             'DCD': {'img_height': 240,
                     'img_width': 360,
                     'test_list': 'test_pair.lst',
-                    'data_dir': 'C:/Users/xavysp/dataset/DCD',  # mean_rgb
+                    'data_dir': 'dataset/DCD',  # mean_rgb
                     'yita': 0.2}
         }
     return config[dataset_name]
